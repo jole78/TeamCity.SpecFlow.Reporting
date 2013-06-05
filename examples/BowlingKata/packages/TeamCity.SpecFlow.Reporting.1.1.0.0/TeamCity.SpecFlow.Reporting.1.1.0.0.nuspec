@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>TeamCity.SpecFlow.Reporting</id>
-    <version>1.0.0.0</version>
+    <version>1.1.0.0</version>
     <authors>Johan Leino</authors>
     <owners>Johan Leino</owners>
     <projectUrl>https://github.com/jole78/TeamCity.SpecFlow.Reporting</projectUrl>

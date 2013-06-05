@@ -78,7 +78,7 @@
       <LastGenOutput>ScoreCalculationAlternatives.feature.cs</LastGenOutput>
     </None>
     <None Include="specflow.exe.config" />
-    <None Include="SpecFlow.TeamCity.Reporting.psm1" />
+    <None Include="TeamCity.SpecFlow.Reporting.psm1" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
