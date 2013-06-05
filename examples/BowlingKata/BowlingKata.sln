@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowling", "Bowling\Bowling.csproj", "{464E83C4-2738-4288-9278-61899096A1A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowling.SpecFlow", "BowlingKata-NUnit\Bowling.SpecFlow\Bowling.SpecFlow.csproj", "{BB9D36EB-98B7-4536-9584-65068003A4F4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NUnit", "NUnit", "{0593AE53-FAC6-44FD-96AA-898E9D3BD375}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{B0A86AB8-4CFA-40B8-A870-549E53045784}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{464E83C4-2738-4288-9278-61899096A1A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{464E83C4-2738-4288-9278-61899096A1A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{464E83C4-2738-4288-9278-61899096A1A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{464E83C4-2738-4288-9278-61899096A1A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB9D36EB-98B7-4536-9584-65068003A4F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB9D36EB-98B7-4536-9584-65068003A4F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB9D36EB-98B7-4536-9584-65068003A4F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB9D36EB-98B7-4536-9584-65068003A4F4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BB9D36EB-98B7-4536-9584-65068003A4F4} = {0593AE53-FAC6-44FD-96AA-898E9D3BD375}
+	EndGlobalSection
+EndGlobal
