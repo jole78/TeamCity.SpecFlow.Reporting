@@ -157,8 +157,7 @@ function Invoke-SpecFlowExe {
 function Get-PackagesFolder{
 	$packages = Get-ChildItem -Directory -Path $cfg.PathToPackagesFolder packages
 	if($packages -eq $null){
-		throw "Failed to find the packages folder at location: '$cfg.PathToPackagesFolder'. 
-				Try using Set-Properties @{PathToPackagesFolder='[YOUR PATH]'}"
+		throw "Failed to find the packages folder at location: '$($cfg.PathToPackagesFolder)'. Try using Set-Properties @{PathToPackagesFolder='[YOUR PATH]'}"
 	}
 	
 	return $packages
