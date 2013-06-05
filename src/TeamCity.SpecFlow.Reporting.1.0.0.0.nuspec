@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>TeamCity.SpecFlow.Reporting</id>
+        <version>1.0.0.0</version>
+        <authors>Johan Leino</authors>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>My package description.</description>
+        <dependencies>
+            <dependency id="SpecFlow" version="1.9.0" />
+            <dependency id="NUnit.Runners" version="2.6.2" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="specflow.exe.config" target="content\net40\specflow.exe.config" />
+        <file src="SpecFlow.TeamCity.Reporting.psm1" target="content\net40\SpecFlow.TeamCity.Reporting.psm1" />
+        <file src="SpecFlow.TeamCity.Reporting.psm1" target="content\SpecFlow.TeamCity.Reporting.psm1" />
+    </files>
+</package>
