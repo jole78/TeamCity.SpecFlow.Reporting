@@ -15,8 +15,8 @@
     </metadata>
     <files>
         <file src="specflow.exe.config" target="content\net40\specflow.exe.config" />
-        <file src="SpecFlow.TeamCity.Reporting.psm1" target="content\net40\SpecFlow.TeamCity.Reporting.psm1" />
-        <file src="SpecFlow.TeamCity.Reporting.psm1" target="content\SpecFlow.TeamCity.Reporting.psm1" />
+        <file src="TeamCity.SpecFlow.Reporting.psm1" target="content\net40\TeamCity.SpecFlow.Reporting.psm1" />
+        <file src="TeamCity.SpecFlow.Reporting.psm1" target="content\TeamCity.SpecFlow.Reporting.psm1" />
     </files>
 </package>
 

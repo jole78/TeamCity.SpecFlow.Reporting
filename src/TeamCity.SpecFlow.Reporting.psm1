@@ -155,9 +155,10 @@ function Invoke-SpecFlowExe {
 }
 
 function Get-PackagesFolder{
-	$packages = Get-ChildItem -Directory -Path ..\ packages
+	$packages = Get-ChildItem -Directory -Path $cfg.PathToPackagesFolder packages
 	if($packages -eq $null){
-		throw "Failed to find the packages folder at the default location: '..\'"
+		throw "Failed to find the packages folder at location: '$cfg.PathToPackagesFolder'. 
+				Try using Set-Properties @{PathToPackagesFolder='[YOUR PATH]'}"
 	}
 	
 	return $packages
@@ -181,7 +182,7 @@ function Find-SpecFlowExe{
 	#TODO: need to append the version like
 	#SpecFlow.1.9.0
 	
-	$specflow_exe = Get-ChildItem -File -Recurse -Path $packages.FullName specflow.exe
+	$specflow_exe = Get-ChildItem -File -Recurse -Path $packages.FullName specflow.exe | Select-Object -First 1
 	if($specflow_exe -eq $null){
 		throw "Failed to find specflow.exe in the packages folder: '$($packages.FullName)'"
 	}
@@ -195,7 +196,7 @@ function Find-NUnitConsoleExe{
 	#TODO: need to append the version like
 	#NUnit.Runners.2.6.2
 	
-	$nunit_console_exe = Get-ChildItem -File -Recurse -Path $packages.FullName nunit-console.exe
+	$nunit_console_exe = Get-ChildItem -File -Recurse -Path $packages.FullName nunit-console.exe | Select-Object -First 1
 	if($nunit_console_exe -eq $null){
 		throw "Failed to find nunit-console.exe in the packages folder: '$($packages.FullName)'"
 	}
@@ -231,11 +232,13 @@ function Remove-Files {
 
 
 # default values
+# override by Set-Properties @{Key=Value} outside of this script
 $cfg = @{}
 $cfg.Configuration = 'Release'
 $cfg.SpecFlowReportType = 'nunitexecutionreport'
 $cfg.PublishArtifacts = $true
 $cfg.Cleanup = $true
+$cfg.PathToPackagesFolder = '..\'
 
 Export-ModuleMember -Function Invoke-TeamCitySpecFlowReport, Set-Properties
 
