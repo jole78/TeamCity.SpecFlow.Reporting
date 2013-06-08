@@ -17,13 +17,17 @@ function Invoke-TeamCitySpecFlowReport {
 	
 	try {
 	
-		$args = Parse-Arguments
+		$args = ParseArguments
 		
-		Invoke-NUnitConsoleExe $args.PathToAssemblyOrProject $categories
-		Invoke-SpecFlowExe $args.PathToProjectFile | Tee-Object -Variable specflow_out | Out-Null
+		CleanEnvironment
+		InvokeNUnitConsoleExe $args.PathToAssemblyOrProject $categories
+		InvokeSpecFlowExe $args.PathToProjectFile | Tee-Object -Variable specflow_out | Out-Null
 		
-		Publish-Artifacts $specflow_out.HtmlReport
-		Remove-Files $specflow_out
+		PublishArtifacts $specflow_out.HtmlReport.Path
+		RemoveFile $specflow_out.SpecFlowExeConfig.Path
+		CreateListOfGeneratedFiles $specflow_out
+		
+
 	
 	} catch {
 		Write-Error $_.Exception
@@ -31,11 +35,28 @@ function Invoke-TeamCitySpecFlowReport {
 	}
 }
 
-function Parse-Arguments {
+function CleanEnvironment{
+	if($cfg.CleanEnvironment) {
+		$x = Get-Content .\files.generated -WarningAction:SilentlyContinue -ErrorAction:SilentlyContinue
+		if($x) {
+			$x -split ';' | % { RemoveFile $_ }
+		}
+	}
+}
+
+function CreateListOfGeneratedFiles{
+	param(
+		$files
+	)
+	
+	($files.GetEnumerator() |  % { $_.Value.Path }) -join ';' | Out-File .\files.generated
+}
+
+function ParseArguments {
 
 	$args = @{}
 	
-	$proj = Get-ProjectInformation
+	$proj = GetProjectInformation
 	
 	# Path to xxx.csproj
 	if($cfg.PathToProjectFile) {
@@ -61,7 +82,7 @@ function Parse-Arguments {
 	return $args	
 }
 
-function Invoke-NUnitConsoleExe {
+function InvokeNUnitConsoleExe {
 	param (
 		[Parameter(Position = 0, Mandatory = 1)][string] $assemblyOrProject,
 		[Parameter(Position = 1, Mandatory = 0)][string[]] $categories
@@ -71,7 +92,7 @@ function Invoke-NUnitConsoleExe {
 	if($cfg.PathToNUnitConsoleExe) {
 		$exe = $cfg.PathToNUnitConsoleExe
 	} else {
-		$exe = Find-NUnitConsoleExe
+		$exe = FindNUnitConsoleExe
 	}
 	
 	if(Test-Path $exe -PathType:Leaf) {
@@ -95,7 +116,17 @@ function Invoke-NUnitConsoleExe {
 	}
 }
 
-function Invoke-SpecFlowExe {
+function ConvertToFileInfo {
+	param(
+		$file
+	)
+	
+	return @{
+		Path = $($file.FullName)
+	}
+}
+
+function InvokeSpecFlowExe {
 	param (
 		[Parameter(Position = 1, Mandatory = 1)][string] $projectFile
 	)
@@ -104,14 +135,14 @@ function Invoke-SpecFlowExe {
 	
 	# Output from NUnit
 	if(Test-Path .\TestResult.txt -PathType:Leaf) {
-		$out.NUnitOutput = Get-Item .\TestResult.txt
+		$out.NUnitOutput = ConvertToFileInfo (Get-Item .\TestResult.txt | Select-Object -First 1)
 	} else {
 		throw "Failed to find nunit output"
 	}
 	
 	# Report from NUnit
 	if(Test-Path .\TestResult.xml -PathType:Leaf) {
-		$out.NUnitReport = Get-Item .\TestResult.xml
+		$out.NUnitReport = ConvertToFileInfo (Get-Item .\TestResult.xml | Select-Object -First 1)
 	} else {
 		throw "Failed to find nunit report"
 	}
@@ -120,7 +151,7 @@ function Invoke-SpecFlowExe {
 	if($cfg.PathToSpecFlowExe) {
 		$exe = $cfg.PathToSpecFlowExe
 	} else {
-		$exe = Find-SpecFlowExe
+		$exe = FindSpecFlowExe
 	}	
 	
 	if(Test-Path $exe -PathType:Leaf) {
@@ -130,7 +161,7 @@ function Invoke-SpecFlowExe {
 			if(Test-Path .\specflow.exe.config -PathType:Leaf) {
 				$dir = (Get-Item $exe).Directory
 				Copy-Item -Path .\specflow.exe.config -Destination $dir
-				$out.SpecFlowExeConfig = Get-Item (Join-Path $dir -ChildPath specflow.exe.config)
+				$out.SpecFlowExeConfig = ConvertToFileInfo (Get-Item (Join-Path $dir -ChildPath specflow.exe.config) | Select-Object -First 1)
 			}
 		
 			$parameters = @()
@@ -141,7 +172,7 @@ function Invoke-SpecFlowExe {
 			&$exe $parameters | Out-Null
 			
 			if(Test-Path .\TestResult.html -PathType:Leaf) {
-				$out.HtmlReport = Get-Item .\TestResult.html
+				$out.HtmlReport = ConvertToFileInfo (Get-Item .\TestResult.html | Select-Object -First 1)
 			}
 			
 			return $out
@@ -154,7 +185,7 @@ function Invoke-SpecFlowExe {
 	}
 }
 
-function Get-PackagesFolder{
+function GetPackagesFolder{
 	$packages = Get-ChildItem -Directory -Path $cfg.PathToPackagesFolder packages
 	if($packages -eq $null){
 		throw "Failed to find the packages folder at location: '$($cfg.PathToPackagesFolder)'. Try using Set-Properties @{PathToPackagesFolder='[YOUR PATH]'}"
@@ -163,7 +194,7 @@ function Get-PackagesFolder{
 	return $packages
 }
 
-function Get-ProjectInformation{
+function GetProjectInformation{
 	$proj = Get-ChildItem -File "*.*proj" | Select-Object -First 1
 	if($proj -eq $null){
 		throw "Failed to find the project file (*.*proj)"
@@ -175,9 +206,9 @@ function Get-ProjectInformation{
 	}
 }
 
-function Find-SpecFlowExe{
+function FindSpecFlowExe{
 		
-	$packages = Get-PackagesFolder
+	$packages = GetPackagesFolder
 	#TODO: need to append the version like
 	#SpecFlow.1.9.0
 	
@@ -189,9 +220,9 @@ function Find-SpecFlowExe{
 	return $specflow_exe.FullName
 }
 
-function Find-NUnitConsoleExe{
+function FindNUnitConsoleExe{
 		
-	$packages = Get-PackagesFolder
+	$packages = GetPackagesFolder
 	#TODO: need to append the version like
 	#NUnit.Runners.2.6.2
 	
@@ -203,7 +234,7 @@ function Find-NUnitConsoleExe{
 	return $nunit_console_exe.FullName
 }
 
-function Publish-Artifacts {
+function PublishArtifacts {
 	param(
 		[string]$path
 	)
@@ -212,20 +243,12 @@ function Publish-Artifacts {
  }
 }
 
-function Remove-Files {
+function RemoveFile {
 	param(
-		$files
+		$path
 	)
-	
-	if($cfg.Cleanup) {
-	
-		foreach($key in $files.Keys) {
-			
-			$file = $files[$key]
-			if(Test-Path $file -PathType:Leaf) {
-				Remove-Item $file -ErrorAction:SilentlyContinue | Out-Null
-			}
-		}	
+	if(Test-Path $path -PathType:Leaf) {
+		Remove-Item $path -ErrorAction:SilentlyContinue | Out-Null
 	}
 }
 
@@ -236,7 +259,7 @@ $cfg = @{}
 $cfg.Configuration = 'Release'
 $cfg.SpecFlowReportType = 'nunitexecutionreport'
 $cfg.PublishArtifacts = $true
-$cfg.Cleanup = $true
+$cfg.CleanEnvironment = $true
 $cfg.PathToPackagesFolder = '..\'
 
 Export-ModuleMember -Function Invoke-TeamCitySpecFlowReport, Set-Properties
