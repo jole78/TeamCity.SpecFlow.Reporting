@@ -2,12 +2,14 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>TeamCity.SpecFlow.Reporting</id>
-        <version>1.1.2.1</version>
+        <title>Automated SpecFlow reports (in TeamCity)</title>
+        <version>$version$</version> <!-- The real version will be set via TeamCity and nuget.exe -->
         <authors>Johan Leino</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <iconUrl>http://techtalk.github.com/SpecFlow/specflow.png</iconUrl>
+        <iconUrl>https://raw.github.com/jole78/TeamCity.SpecFlow.Reporting/master/logo-32.png</iconUrl>
         <projectUrl>https://github.com/jole78/TeamCity.SpecFlow.Reporting</projectUrl>
         <description>Automates, via PowerShell, the process of executing SpecFlow features via specflow.exe to produce a html report that can be shown in TeamCity.</description>
+        <tags>SpecFlow TeamCity BDD Automation PowerShell</tags>
         <dependencies>
             <dependency id="SpecFlow" />
             <dependency id="NUnit.Runners" version="2.6" />
