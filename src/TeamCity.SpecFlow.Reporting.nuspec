@@ -6,8 +6,8 @@
         <version>$version$</version> <!-- The real version will be set via TeamCity and nuget.exe -->
         <authors>Johan Leino</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <iconUrl>https://raw.github.com/jole78/TeamCity.SpecFlow.Reporting/master/logo-32.png</iconUrl>
-        <projectUrl>https://github.com/jole78/TeamCity.SpecFlow.Reporting</projectUrl>
+        <iconUrl>https://raw.github.com/jole78/TeamCity.SpecFlow.Reporting/master/logo.png</iconUrl>
+        <projectUrl>https://github.com/jole78/TeamCity.SpecFlow.Reporting/wiki</projectUrl>
         <description>Automates, via PowerShell, the process of executing SpecFlow features via specflow.exe to produce a html report that can be shown in TeamCity.</description>
         <tags>SpecFlow TeamCity BDD Automation PowerShell</tags>
         <dependencies>

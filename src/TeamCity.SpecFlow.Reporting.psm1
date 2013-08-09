@@ -1,22 +1,11 @@
-﻿
-
-function Set-Properties {
-	param(
-		[HashTable]$properties
-	)
-	
-	foreach ($key in $properties.keys) {
-		$cfg[$key] = $properties.$key
-    }
-}
-
-function Invoke-TeamCitySpecFlowReport {
+﻿function Invoke-TeamCitySpecFlowReport {
 	param(
 	 [string[]]$categories = @()
 	)
 	
 	try {
-	
+		Log $cfg.Messages.Begin
+		
 		$args = ParseArguments
 		
 		CleanEnvironment
@@ -27,7 +16,7 @@ function Invoke-TeamCitySpecFlowReport {
 		RemoveFile $specflow_out.SpecFlowExeConfig.Path
 		CreateListOfGeneratedFiles $specflow_out
 		
-
+		Log $cfg.Messages.End
 	
 	} catch {
 		Write-Error $_.Exception
@@ -35,8 +24,30 @@ function Invoke-TeamCitySpecFlowReport {
 	}
 }
 
-function CleanEnvironment{
+function Set-Properties {
+	param(
+		[HashTable]$properties
+	)
+
+	foreach ($key in $properties.keys) {
+		
+		$value = $properties.$key		
+		$cfg[$key] = $value
+		Log " - Property '$key' updated with value '$value'"
+    }
+}
+
+function Log([string]$message) {
+	if($cfg.Verbose) {
+		Write-Host $message
+	}
+}
+
+function CleanEnvironment{	
+	
 	if($cfg.CleanEnvironment) {
+		Log "=== Removing File Cache ==="
+		
 		$x = Get-Content .\files.generated -WarningAction:SilentlyContinue -ErrorAction:SilentlyContinue
 		if($x) {
 			$x -split ';' | % { RemoveFile $_ }
@@ -48,6 +59,7 @@ function CreateListOfGeneratedFiles{
 	param(
 		$files
 	)
+	Log "=== Creating File Cache ==="
 	
 	($files.GetEnumerator() |  % { $_.Value.Path }) -join ';' | Out-File .\files.generated
 }
@@ -84,9 +96,11 @@ function ParseArguments {
 
 function InvokeNUnitConsoleExe {
 	param (
-		[Parameter(Position = 0, Mandatory = 1)][string] $assemblyOrProject,
-		[Parameter(Position = 1, Mandatory = 0)][string[]] $categories
+		[string] $assemblyOrProject,
+		[string[]] $categories
 	)
+	
+	Log "=== Invoking nunit.console.exe ==="
 	
 	# Path to nunit-console.exe
 	if($cfg.PathToNUnitConsoleExe) {
@@ -128,8 +142,10 @@ function ConvertToFileInfo {
 
 function InvokeSpecFlowExe {
 	param (
-		[Parameter(Position = 1, Mandatory = 1)][string] $projectFile
+		[string] $projectFile
 	)
+	
+	Log "=== Invoking specflow.exe ==="
 	
 	$out = @{}
 	
@@ -234,33 +250,34 @@ function FindNUnitConsoleExe{
 	return $nunit_console_exe.FullName
 }
 
-function PublishArtifacts {
-	param(
-		[string]$path
-	)
- if($cfg.PublishArtifacts) {
- 	Write-Host "##teamcity[publishArtifacts '$path']"
- }
+function PublishArtifacts([string]$path) {
+
+	 if($cfg.PublishArtifacts) {
+	 	Write-Host "##teamcity[publishArtifacts '$path']"
+	 }
 }
 
-function RemoveFile {
-	param(
-		$path
-	)
+function RemoveFile([string]$path) {
 	if(Test-Path $path -PathType:Leaf) {
+		Log "  - removing file '$path'"
 		Remove-Item $path -ErrorAction:SilentlyContinue | Out-Null
 	}
 }
 
-
 # default values
 # override by Set-Properties @{Key=Value} outside of this script
-$cfg = @{}
-$cfg.Configuration = 'Release'
-$cfg.SpecFlowReportType = 'nunitexecutionreport'
-$cfg.PublishArtifacts = $true
-$cfg.CleanEnvironment = $true
-$cfg.PathToPackagesFolder = '..\'
+$cfg = @{
+	Configuration = 'Release'
+	SpecFlowReportType = 'nunitexecutionreport'
+	PublishArtifacts = $true
+	CleanEnvironment = $true
+	PathToPackagesFolder = '..\'
+	Verbose = $true
+	Messages = @{
+		Begin = "##teamcity[blockOpened name='TeamCity.SpecFlow.Reporting']"
+		End = "##teamcity[blockClosed name='TeamCity.SpecFlow.Reporting']"
+	}
+}
 
 Export-ModuleMember -Function Invoke-TeamCitySpecFlowReport, Set-Properties
 
