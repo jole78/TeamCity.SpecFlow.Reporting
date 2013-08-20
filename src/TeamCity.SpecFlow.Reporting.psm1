@@ -10,7 +10,7 @@
 		
 		CleanEnvironment
 		InvokeNUnitConsoleExe $args.PathToAssemblyOrProject $categories
-		InvokeSpecFlowExe $args.PathToProjectFile | Tee-Object -Variable specflow_out | Out-Null
+		Invoke-SpecFlowExe $args.PathToProjectFile | Tee-Object -Variable specflow_out | Out-Null
 		
 		PublishArtifacts $specflow_out.HtmlReport.Path
 		RemoveFile $specflow_out.SpecFlowExeConfig.Path
@@ -35,6 +35,12 @@ function Set-Properties {
 		$cfg[$key] = $value
 		Log " - Property '$key' updated with value '$value'"
     }
+}
+
+function Get-Property {
+	param([string]$Name)
+	
+	return $cfg[$Name]
 }
 
 function Log([string]$message) {
@@ -140,7 +146,7 @@ function ConvertToFileInfo {
 	}
 }
 
-function InvokeSpecFlowExe {
+function Invoke-SpecFlowExe {
 	param (
 		[string] $projectFile
 	)
@@ -201,15 +207,6 @@ function InvokeSpecFlowExe {
 	}
 }
 
-function GetPackagesFolder{
-	$packages = Get-ChildItem -Directory -Path $cfg.PathToPackagesFolder packages
-	if($packages -eq $null){
-		throw "Failed to find the packages folder at location: '$($cfg.PathToPackagesFolder)'. Try using Set-Properties @{PathToPackagesFolder='[YOUR PATH]'}"
-	}
-	
-	return $packages
-}
-
 function GetProjectInformation{
 	$proj = Get-ChildItem -File "*.*proj" | Select-Object -First 1
 	if($proj -eq $null){
@@ -224,7 +221,7 @@ function GetProjectInformation{
 
 function FindSpecFlowExe{
 		
-	$packages = GetPackagesFolder
+	$packages = Get-PackagesFolder
 	#TODO: need to append the version like
 	#SpecFlow.1.9.0
 	
@@ -238,7 +235,7 @@ function FindSpecFlowExe{
 
 function FindNUnitConsoleExe{
 		
-	$packages = GetPackagesFolder
+	$packages = Get-PackagesFolder
 	#TODO: need to append the version like
 	#NUnit.Runners.2.6.2
 	
@@ -264,6 +261,8 @@ function RemoveFile([string]$path) {
 	}
 }
 
+
+
 # default values
 # override by Set-Properties @{Key=Value} outside of this script
 $cfg = @{
@@ -279,5 +278,12 @@ $cfg = @{
 	}
 }
 
-Export-ModuleMember -Function Invoke-TeamCitySpecFlowReport, Set-Properties
+$ScriptPath = (Split-Path -Parent $MyInvocation.MyCommand.Definition)
+
+# grab functions from files
+Resolve-Path $ScriptPath\functions\*.ps1 | 
+    ? { -not ($_.ProviderPath.Contains(".Tests.")) } |
+    % { . $_.ProviderPath }
+
+Export-ModuleMember -Function Invoke-TeamCitySpecFlowReport, Set-Properties, Get-Property
 
