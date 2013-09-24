@@ -7,14 +7,12 @@
     <authors>TechTalk</authors>
     <owners>TechTalk</owners>
     <licenseUrl>http://specflow.org/about/license.aspx</licenseUrl>
-    <projectUrl>http://www.specflow.org/</projectUrl>
+    <projectUrl>http://www.specflow.org</projectUrl>
     <iconUrl>http://techtalk.github.com/SpecFlow/specflow.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Combined package to setup SpecFlow with NUnit v2.6+ easily. For running tests with NUnit runners, use SpecFlow.NUnit.Runners package!</description>
     <summary>Combined package to setup SpecFlow with NUnit v2.6+ easily. For running tests with NUnit runners, use SpecFlow.NUnit.Runners package!</summary>
-    <releaseNotes />
-    <copyright />
-    <language />
+    <language>en-US</language>
     <tags>specflow nunit</tags>
     <dependencies>
       <dependency id="SpecFlow" />
