@@ -68,7 +68,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Execute-Tests.ps1" />
     <None Include="packages.config" />
     <None Include="ScoreCalculation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -78,8 +77,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ScoreCalculationAlternatives.feature.cs</LastGenOutput>
     </None>
-    <None Include="specflow.exe.config" />
-    <None Include="TeamCity.SpecFlow.Reporting.psm1" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
