@@ -21,7 +21,16 @@ namespace TSR.Tests.ConsoleApplication
 
             parameters.Parse(args);
 
-            Console.WriteLine(output);
+            if (string.IsNullOrWhiteSpace(output) == false)
+            {
+                Console.WriteLine(output);
+            }
+            else {
+                foreach (var parameter in args) {
+                    Console.Error.WriteLine(parameter);
+                }
+            }
+            
         }
     }
 }
