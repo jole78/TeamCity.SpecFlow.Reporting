@@ -9,6 +9,12 @@ Project("{F5034706-568F-408A-B7B3-4D38C6DB8A32}") = "TSR.Tests", "src\TSR.Tests\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TSR.Tests.ConsoleApplication", "src\TSR.Tests.ConsoleApplication\TSR.Tests.ConsoleApplication.csproj", "{0452C2A4-B9E8-45D5-8551-AA7A056EB8B4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowling", "examples\BowlingKata\Bowling\Bowling.csproj", "{464E83C4-2738-4288-9278-61899096A1A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowling.SpecFlow", "examples\BowlingKata\Bowling.SpecFlow\Bowling.SpecFlow.csproj", "{BB9D36EB-98B7-4536-9584-65068003A4F4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{633CE16D-6A86-4B2B-8CEE-00227BBA42E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,8 +33,20 @@ Global
 		{0452C2A4-B9E8-45D5-8551-AA7A056EB8B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0452C2A4-B9E8-45D5-8551-AA7A056EB8B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0452C2A4-B9E8-45D5-8551-AA7A056EB8B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{464E83C4-2738-4288-9278-61899096A1A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{464E83C4-2738-4288-9278-61899096A1A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{464E83C4-2738-4288-9278-61899096A1A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{464E83C4-2738-4288-9278-61899096A1A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB9D36EB-98B7-4536-9584-65068003A4F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB9D36EB-98B7-4536-9584-65068003A4F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB9D36EB-98B7-4536-9584-65068003A4F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB9D36EB-98B7-4536-9584-65068003A4F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{464E83C4-2738-4288-9278-61899096A1A8} = {633CE16D-6A86-4B2B-8CEE-00227BBA42E3}
+		{BB9D36EB-98B7-4536-9584-65068003A4F4} = {633CE16D-6A86-4B2B-8CEE-00227BBA42E3}
 	EndGlobalSection
 EndGlobal
