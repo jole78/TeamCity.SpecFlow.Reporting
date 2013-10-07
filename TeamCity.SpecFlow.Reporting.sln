@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.20827.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F5034706-568F-408A-B7B3-4D38C6DB8A32}") = "TSR", "src\TSR\TSR.pssproj", "{6CAFC0C6-A428-4D30-A9F9-700E829FEA51}"
+EndProject
+Project("{F5034706-568F-408A-B7B3-4D38C6DB8A32}") = "TSR.Tests", "src\TSR.Tests\TSR.Tests.pssproj", "{A650C89F-C1E3-43BB-ABFF-BB902A40DFA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TSR.Tests.ConsoleApplication", "src\TSR.Tests.ConsoleApplication\TSR.Tests.ConsoleApplication.csproj", "{0452C2A4-B9E8-45D5-8551-AA7A056EB8B4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6CAFC0C6-A428-4D30-A9F9-700E829FEA51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CAFC0C6-A428-4D30-A9F9-700E829FEA51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CAFC0C6-A428-4D30-A9F9-700E829FEA51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CAFC0C6-A428-4D30-A9F9-700E829FEA51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A650C89F-C1E3-43BB-ABFF-BB902A40DFA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A650C89F-C1E3-43BB-ABFF-BB902A40DFA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A650C89F-C1E3-43BB-ABFF-BB902A40DFA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A650C89F-C1E3-43BB-ABFF-BB902A40DFA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0452C2A4-B9E8-45D5-8551-AA7A056EB8B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0452C2A4-B9E8-45D5-8551-AA7A056EB8B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0452C2A4-B9E8-45D5-8551-AA7A056EB8B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0452C2A4-B9E8-45D5-8551-AA7A056EB8B4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
