@@ -15,6 +15,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowling.SpecFlow", "example
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{633CE16D-6A86-4B2B-8CEE-00227BBA42E3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{3316639B-1EEB-4A52-83CB-0D813A894E75}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,7 +51,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{464E83C4-2738-4288-9278-61899096A1A8} = {633CE16D-6A86-4B2B-8CEE-00227BBA42E3}
 		{BB9D36EB-98B7-4536-9584-65068003A4F4} = {633CE16D-6A86-4B2B-8CEE-00227BBA42E3}
+		{464E83C4-2738-4288-9278-61899096A1A8} = {633CE16D-6A86-4B2B-8CEE-00227BBA42E3}
 	EndGlobalSection
 EndGlobal
