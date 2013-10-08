@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{a650c89f-c1e3-43bb-abff-bb902a40dfa4}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>MyApplication</RootNamespace>
+    <AssemblyName>MyApplication</AssemblyName>
+    <Name>TSR.Tests</Name>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Add-FileCache.Tests.ps1" />
+    <Content Include="Delete-File.Tests.ps1" />
+    <Content Include="Get-FirstOrDefault.Tests.ps1" />
+    <Content Include="Get-Package.Tests.ps1" />
+    <Content Include="Get-PackagesFolder.Tests.ps1" />
+    <Content Include="Get-SpecFlowPackage.Tests.ps1" />
+    <Content Include="Get-Project.Tests.ps1" />
+    <Content Include="Invoke-Executable.Tests.ps1" />
+    <Content Include="Invoke-NUnit.Tests.ps1" />
+    <Content Include="Invoke-SpecFlow.Tests.ps1" />
+    <Content Include="Publish-Artifacts.Tests.ps1" />
+    <Content Include="Remove-FileCache.Tests.ps1" />
+    <Content Include="_Pester.ps1" />
+    <Content Include="_TestContext.ps1" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Target Name="Build" />
+</Project>

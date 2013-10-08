@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.20827.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F5034706-568F-408A-B7B3-4D38C6DB8A32}") = "TSR", "src\TSR\TSR.pssproj", "{6CAFC0C6-A428-4D30-A9F9-700E829FEA51}"
+EndProject
+Project("{F5034706-568F-408A-B7B3-4D38C6DB8A32}") = "TSR.Tests", "src\TSR.Tests\TSR.Tests.pssproj", "{A650C89F-C1E3-43BB-ABFF-BB902A40DFA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TSR.Tests.ConsoleApplication", "src\TSR.Tests.ConsoleApplication\TSR.Tests.ConsoleApplication.csproj", "{0452C2A4-B9E8-45D5-8551-AA7A056EB8B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowling", "examples\BowlingKata\Bowling\Bowling.csproj", "{464E83C4-2738-4288-9278-61899096A1A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowling.SpecFlow", "examples\BowlingKata\Bowling.SpecFlow\Bowling.SpecFlow.csproj", "{BB9D36EB-98B7-4536-9584-65068003A4F4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{633CE16D-6A86-4B2B-8CEE-00227BBA42E3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{3316639B-1EEB-4A52-83CB-0D813A894E75}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6CAFC0C6-A428-4D30-A9F9-700E829FEA51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CAFC0C6-A428-4D30-A9F9-700E829FEA51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CAFC0C6-A428-4D30-A9F9-700E829FEA51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CAFC0C6-A428-4D30-A9F9-700E829FEA51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A650C89F-C1E3-43BB-ABFF-BB902A40DFA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A650C89F-C1E3-43BB-ABFF-BB902A40DFA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A650C89F-C1E3-43BB-ABFF-BB902A40DFA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A650C89F-C1E3-43BB-ABFF-BB902A40DFA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0452C2A4-B9E8-45D5-8551-AA7A056EB8B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0452C2A4-B9E8-45D5-8551-AA7A056EB8B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0452C2A4-B9E8-45D5-8551-AA7A056EB8B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0452C2A4-B9E8-45D5-8551-AA7A056EB8B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{464E83C4-2738-4288-9278-61899096A1A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{464E83C4-2738-4288-9278-61899096A1A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{464E83C4-2738-4288-9278-61899096A1A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{464E83C4-2738-4288-9278-61899096A1A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB9D36EB-98B7-4536-9584-65068003A4F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB9D36EB-98B7-4536-9584-65068003A4F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB9D36EB-98B7-4536-9584-65068003A4F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB9D36EB-98B7-4536-9584-65068003A4F4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BB9D36EB-98B7-4536-9584-65068003A4F4} = {633CE16D-6A86-4B2B-8CEE-00227BBA42E3}
+		{464E83C4-2738-4288-9278-61899096A1A8} = {633CE16D-6A86-4B2B-8CEE-00227BBA42E3}
+	EndGlobalSection
+EndGlobal
