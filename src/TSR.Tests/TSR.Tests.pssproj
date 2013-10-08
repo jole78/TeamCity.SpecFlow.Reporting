@@ -39,7 +39,6 @@
     <Content Include="Invoke-SpecFlow.Tests.ps1" />
     <Content Include="Publish-Artifacts.Tests.ps1" />
     <Content Include="Remove-FileCache.Tests.ps1" />
-    <Content Include="Set-Indentation.Tests.ps1" />
     <Content Include="_Pester.ps1" />
     <Content Include="_TestContext.ps1" />
   </ItemGroup>
