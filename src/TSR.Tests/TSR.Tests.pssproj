@@ -32,6 +32,7 @@
     <Content Include="Get-FirstOrDefault.Tests.ps1" />
     <Content Include="Get-Package.Tests.ps1" />
     <Content Include="Get-PackagesFolder.Tests.ps1" />
+    <Content Include="Get-SpecFlowPackage.Tests.ps1" />
     <Content Include="Get-Project.Tests.ps1" />
     <Content Include="Invoke-Executable.Tests.ps1" />
     <Content Include="Invoke-NUnit.Tests.ps1" />
